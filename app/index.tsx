@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { Text, View } from "react-native";
+import { StyleSheet, Text, TextInput, View } from "react-native";
 import { Calendar } from "react-native-calendars";
 
 type Summary = {
@@ -12,14 +12,12 @@ export default function Index() {
   const [selectedDate, setSelectedDate] = useState("");
   const [markHoliday, setMarkHoliday] = useState({});
   const [summary, setSummary] = useState<Summary | undefined>(undefined);
+  const [ticketPrice, setTicketPrice] = useState("");
   const today = new Date();
   const todayString = today.toString();
 
   const setMark = useCallback(() => {
     setMarkHoliday({});
-    // setSummary();
-    // console.log("in check selectedDate ", selectedDate);
-    // const selected = new Date(selectedDate);
     if (!selectedDate) return;
 
     let markedDates: Record<string, any> = {};
@@ -72,11 +70,15 @@ export default function Index() {
   }, [selectedDate, setMark]);
 
   return (
-    <View
-      style={{
-        flex: 1,
-      }}
-    >
+    <View style={styles.rootContainer}>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          onChangeText={setTicketPrice}
+          value={ticketPrice}
+          keyboardType={"number-pad"}
+        />
+      </View>
       <Text>選擇啟用日期</Text>
       {summary && summary.startDate && (
         <View>
@@ -93,8 +95,8 @@ export default function Index() {
           setSelectedDate(e.dateString);
         }}
         onPressArrowRight={(e, month) => {
-          console.log('month ', month)
-          e()
+          console.log("month ", month);
+          e();
         }}
         // disableArrowLeft={}
         markingType={"period"}
@@ -107,6 +109,35 @@ export default function Index() {
           ...markHoliday,
         }}
       />
+      {ticketPrice && summary?.holidayCount && (
+        <View>
+          <Text>
+            總共花費: {Number(ticketPrice) * (30 - summary?.holidayCount)}
+          </Text>
+          {Number(ticketPrice) * (30 - summary?.holidayCount) > 1200 ? (
+            <Text>
+              恭喜省下:{" "}
+              {Number(ticketPrice) * (30 - summary?.holidayCount) - 1200}
+            </Text>
+          ) : (
+            <Text>
+              很可惜你沒省到
+            </Text>
+          )}
+        </View>
+      )}
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  rootContainer: {
+    flex: 1,
+  },
+  inputContainer: {
+    padding: 16,
+  },
+  input: {
+    borderWidth: 1,
+  },
+});
