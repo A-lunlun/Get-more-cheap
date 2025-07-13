@@ -1,42 +1,43 @@
 import { Platform, StyleSheet, Text, TextInput, View } from "react-native";
 
-export default function CompareSection({ inputs, index, inputEvent }) {
+interface CompareSectionProps {
+  inputs: {
+    amount: string;
+    price: string;
+    pricePerUnit: number | null;
+  }[];
+  index: number;
+  inputEvent: (value: string, index: number, key: "amount" | "price") => void;
+}
+
+export default function CompareSection({ inputs, index, inputEvent }: CompareSectionProps) {
   return (
     <View style={styles.rootContainer}>
       <Text style={styles.firstText}>{String.fromCharCode(65 + index)}</Text>
-      <View style={[styles.inputSection]}>
+      <View style={styles.inputSection}>
         <View style={[styles.inputContainer, styles.priceContainer]}>
-          <Text style={styles.title}>Price</Text>
+          <Text style={styles.title}>價格</Text>
           <TextInput
-            style={[styles.input]}
-            onChangeText={(amount) => inputEvent(amount, index, "amount")}
-            value={inputs[index].amount}
-            keyboardType={
-              Platform.OS === "ios" ? "numbers-and-punctuation" : "default"
-            }
-            // textAlign="right"
-            placeholder="0"
-          >
-          </TextInput>
-        </View>
-
-        <View style={[styles.inputContainer]}>
-          <Text style={styles.title}>Quantity</Text>
-          <TextInput
-            style={[styles.input]}
+            style={styles.input}
             onChangeText={(price) => inputEvent(price, index, "price")}
             value={inputs[index].price}
-            keyboardType={
-              Platform.OS === "ios" ? "numbers-and-punctuation" : "default"
-            }
-            // textAlign="right"
+            keyboardType={Platform.OS === "ios" ? "numeric" : "numeric"}
             placeholder="0"
+            placeholderTextColor="#999"
           />
         </View>
 
-        {/* <Text style={[styles.col3, styles.text_center]}>
-          {inputs[index].amount} / {inputs[index].price}
-        </Text> */}
+        <View style={styles.inputContainer}>
+          <Text style={styles.title}>數量</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={(amount) => inputEvent(amount, index, "amount")}
+            value={inputs[index].amount}
+            keyboardType={Platform.OS === "ios" ? "numeric" : "numeric"}
+            placeholder="0"
+            placeholderTextColor="#999"
+          />
+        </View>
       </View>
     </View>
   );
@@ -50,6 +51,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     borderColor: "#6C6C6C",
+    backgroundColor: '#FAFAFA',
   },
   inputSection: {
     flex: 1,
@@ -65,34 +67,22 @@ const styles = StyleSheet.create({
   firstText: {
     marginRight: 24,
     fontSize: 24,
+    fontWeight: 'bold',
+    color: '#333',
   },
   title: {
     fontSize: 16,
-    color: '#4F4F4F'
+    color: '#4F4F4F',
+    fontWeight: '500',
   },
   input: {
     borderWidth: 1,
     borderColor: "#6C6C6C",
     borderRadius: 6,
-    height: 36,
+    // height: 40,
     width: '60%',
-    padding: 0,
-    paddingLeft: 5,
-    margin: 0,
-  },
-  text_center: {
-    textAlign: "center",
-  },
-  justify_center: {
-    justifyContent: "center",
-  },
-  justify_between: {
-    justifyContent: "space-between",
-  },
-  align_center: {
-    alignItems: "center",
-  },
-  test: {
-    borderWidth: 1,
+    paddingHorizontal: 8,
+    fontSize: 14,
+    backgroundColor: '#FFF',
   },
 });
