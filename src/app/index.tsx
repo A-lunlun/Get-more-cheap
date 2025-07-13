@@ -1,12 +1,20 @@
-import { MaterialIcons } from '@expo/vector-icons';
-import { Alert, Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
+import {
+  Alert,
+  Linking,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 export default function Index() {
   const handleEmailPress = () => {
-    const email = "xxxx@gmail.com";
+    const email = "lunlun83523@gmail.com";
     const subject = "精打細算 APP 建議與回饋";
     const url = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
-    
+
     Linking.canOpenURL(url)
       .then((supported) => {
         if (supported) {
@@ -22,7 +30,10 @@ export default function Index() {
   };
 
   return (
-    <ScrollView style={styles.rootContainer} showsVerticalScrollIndicator={false}>
+    <ScrollView
+      style={styles.rootContainer}
+      showsVerticalScrollIndicator={false}
+    >
       <View style={styles.container}>
         <View style={styles.headerContainer}>
           <View style={styles.titleContainer}>
@@ -38,14 +49,15 @@ export default function Index() {
             <MaterialIcons name="waving-hand" size={24} color="#4CAF50" />
             <Text style={styles.greetingText}>你好，感謝你下載此 APP</Text>
           </View>
-          
+
           <View style={styles.section}>
             <View style={styles.sectionTitleContainer}>
               <MaterialIcons name="track-changes" size={20} color="#2E7D32" />
               <Text style={styles.sectionTitle}>我們的理念</Text>
             </View>
             <Text style={styles.bodyText}>
-              此 APP 主要理念是為了在萬物皆漲的時代，讓你可以更精打細算而誕生的工具。
+              此 APP
+              主要理念是為了在萬物皆漲的時代，讓你可以更精打細算而誕生的工具。
             </Text>
           </View>
 
@@ -100,9 +112,17 @@ export default function Index() {
           <Text style={styles.contactText}>
             有任何建議或發現 bug，歡迎來信告訴我們：
           </Text>
-          <TouchableOpacity style={styles.emailButton} onPress={handleEmailPress}>
-            <MaterialIcons name="email" size={16} color="#FFFFFF" style={styles.emailIcon} />
-            <Text style={styles.emailText}>xxxx@gmail.com</Text>
+          <TouchableOpacity
+            style={styles.emailButton}
+            onPress={handleEmailPress}
+          >
+            <MaterialIcons
+              name="email"
+              size={16}
+              color="#FFFFFF"
+              style={styles.emailIcon}
+            />
+            <Text style={styles.emailText}>Allen lun</Text>
           </TouchableOpacity>
         </View>
 
@@ -119,37 +139,37 @@ export default function Index() {
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
-    backgroundColor: '#F5F7FA',
+    backgroundColor: "#F5F7FA",
   },
   container: {
     padding: 20,
   },
   headerContainer: {
-    alignItems: 'center',
+    alignItems: "center",
     marginBottom: 30,
   },
   titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginBottom: 8,
   },
   appTitle: {
     fontSize: 32,
-    fontWeight: 'bold',
-    color: '#2E7D32',
+    fontWeight: "bold",
+    color: "#2E7D32",
     marginLeft: 8,
   },
   subtitle: {
     fontSize: 16,
-    color: '#666',
-    fontStyle: 'italic',
+    color: "#666",
+    fontStyle: "italic",
   },
   card: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: "#FFFFFF",
     borderRadius: 16,
     padding: 20,
     marginBottom: 16,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -159,43 +179,43 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   greetingContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
     marginBottom: 20,
   },
   greetingText: {
     fontSize: 18,
-    fontWeight: '600',
-    color: '#333',
+    fontWeight: "600",
+    color: "#333",
     marginLeft: 8,
   },
   section: {
     marginBottom: 20,
   },
   sectionTitleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginBottom: 12,
   },
   sectionTitle: {
     fontSize: 18,
-    fontWeight: '700',
-    color: '#2E7D32',
+    fontWeight: "700",
+    color: "#2E7D32",
     marginLeft: 8,
   },
   bodyText: {
     fontSize: 16,
     lineHeight: 24,
-    color: '#555',
-    textAlign: 'justify',
+    color: "#555",
+    textAlign: "justify",
   },
   featureList: {
     marginBottom: 16,
   },
   featureItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginBottom: 8,
   },
   featureBullet: {
@@ -204,64 +224,64 @@ const styles = StyleSheet.create({
   },
   featureText: {
     fontSize: 16,
-    color: '#555',
-    fontWeight: '500',
+    color: "#555",
+    fontWeight: "500",
     marginLeft: 8,
   },
   contactCard: {
-    backgroundColor: '#E8F5E8',
+    backgroundColor: "#E8F5E8",
     borderRadius: 16,
     padding: 20,
     marginBottom: 20,
     borderWidth: 1,
-    borderColor: '#4CAF50',
+    borderColor: "#4CAF50",
   },
   contactTitleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
     marginBottom: 12,
   },
   contactTitle: {
     fontSize: 18,
-    fontWeight: '700',
-    color: '#2E7D32',
+    fontWeight: "700",
+    color: "#2E7D32",
     marginLeft: 8,
   },
   contactText: {
     fontSize: 16,
-    color: '#555',
-    textAlign: 'center',
+    color: "#555",
+    textAlign: "center",
     marginBottom: 16,
   },
   emailButton: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: "#4CAF50",
     paddingVertical: 12,
     paddingHorizontal: 24,
     borderRadius: 25,
-    alignSelf: 'center',
-    flexDirection: 'row',
-    alignItems: 'center',
+    alignSelf: "center",
+    flexDirection: "row",
+    alignItems: "center",
   },
   emailIcon: {
     marginRight: 8,
   },
   emailText: {
-    color: '#FFFFFF',
+    color: "#FFFFFF",
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   footer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
     marginTop: 10,
     marginBottom: 30,
   },
   footerText: {
     fontSize: 16,
-    color: '#888',
-    fontStyle: 'italic',
+    color: "#888",
+    fontStyle: "italic",
     marginLeft: 8,
   },
 });

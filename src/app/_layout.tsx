@@ -5,7 +5,7 @@ export default function RootLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: '#4ECDC4', // 統一使用你 App 的主色調
+        tabBarActiveTintColor: '#4CAF50', // 統一使用你 App 的主色調
         tabBarInactiveTintColor: '#999',
         headerTitleAlign: 'center',
         headerStyle: {

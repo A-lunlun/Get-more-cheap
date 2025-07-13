@@ -58,7 +58,7 @@ export default function MonthlyTicket() {
         markedDates[isoDate] = {
           startingDay: i === 0,
           endingDay: i === 29,
-          color: "#4ECDC4",
+          color: "#4CAF50",
           textColor: "white",
         };
       }
@@ -120,7 +120,7 @@ export default function MonthlyTicket() {
     <ScrollView style={styles.rootContainer}>
       <View style={styles.card}>
         <View style={styles.sectionHeader}>
-          <MaterialIcons name="attach-money" size={24} color="#4ECDC4" />
+          <MaterialIcons name="attach-money" size={24} color="#4CAF50" />
           <Text style={styles.sectionTitle}>票價設定</Text>
         </View>
         <View style={styles.inputRow}>
@@ -149,7 +149,7 @@ export default function MonthlyTicket() {
 
       <View style={styles.card}>
         <View style={styles.sectionHeader}>
-          <MaterialIcons name="event" size={24} color="#4ECDC4" />
+          <MaterialIcons name="event" size={24} color="#4CAF50" />
           <Text style={styles.sectionTitle}>選擇啟用日期</Text>
         </View>
         <Text style={styles.instructionText}>點擊日期開始計算30天的使用期間</Text>
@@ -184,16 +184,16 @@ export default function MonthlyTicket() {
               backgroundColor: '#ffffff',
               calendarBackground: '#ffffff',
               textSectionTitleColor: '#b6c1cd',
-              selectedDayBackgroundColor: '#4ECDC4',
+              selectedDayBackgroundColor: '#4CAF50',
               selectedDayTextColor: '#ffffff',
-              todayTextColor: '#4ECDC4',
+              todayTextColor: '#4CAF50',
               dayTextColor: '#2d4150',
               textDisabledColor: '#d9e1e8',
-              dotColor: '#4ECDC4',
+              dotColor: '#4CAF50',
               selectedDotColor: '#ffffff',
-              arrowColor: '#4ECDC4',
+              arrowColor: '#4CAF50',
               monthTextColor: '#2d4150',
-              indicatorColor: '#4ECDC4',
+              indicatorColor: '#4CAF50',
               textDayFontWeight: '500',
               textMonthFontWeight: 'bold',
               textDayHeaderFontWeight: '500',
@@ -206,7 +206,7 @@ export default function MonthlyTicket() {
 
         <View style={styles.legendContainer}>
           <View style={styles.legendItem}>
-            <View style={[styles.legendColor, { backgroundColor: '#4ECDC4' }]} />
+            <View style={[styles.legendColor, { backgroundColor: '#4CAF50' }]} />
             <Text style={styles.legendText}>工作日</Text>
           </View>
           <View style={styles.legendItem}>
@@ -219,7 +219,7 @@ export default function MonthlyTicket() {
       {result && (
         <View style={[styles.card, styles.resultCard]}>
           <View style={styles.sectionHeader}>
-            <MaterialIcons name="bar-chart" size={24} color="#4ECDC4" />
+            <MaterialIcons name="bar-chart" size={24} color="#4CAF50" />
             <Text style={styles.sectionTitle}>計算結果</Text>
           </View>
           
@@ -350,7 +350,7 @@ const styles = StyleSheet.create({
   statNumber: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#4ECDC4',
+    color: '#4CAF50',
   },
   statLabel: {
     fontSize: 12,
@@ -382,7 +382,7 @@ const styles = StyleSheet.create({
   },
   resultCard: {
     borderLeftWidth: 4,
-    borderLeftColor: '#4ECDC4',
+    borderLeftColor: '#4CAF50',
   },
   costBreakdown: {
     marginBottom: 20,
@@ -428,7 +428,7 @@ const styles = StyleSheet.create({
   resultAmount: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#4ECDC4',
+    color: '#4CAF50',
   },
   resetButton: {
     backgroundColor: '#FF6B6B',
