@@ -1,15 +1,7 @@
-import { useFocusEffect } from "expo-router";
+import { MaterialIcons } from '@expo/vector-icons';
+import { useFocusEffect } from 'expo-router';
 import { useCallback, useEffect, useState } from "react";
-import {
-  Alert,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Alert, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Calendar } from "react-native-calendars";
 
 type Summary = {
@@ -29,12 +21,12 @@ export default function MonthlyTicket() {
 
   useFocusEffect(
     useCallback(() => {
-      setSelectedDate("");
-      setMarkHoliday({});
-      setSummary(undefined);
-      setTicketPrice("");
+      setSelectedDate('')
+      setMarkHoliday({})
+      setSummary(undefined)
+      setTicketPrice('')
     }, [])
-  );
+  )
 
   const setMark = useCallback(() => {
     setMarkHoliday({});
@@ -87,34 +79,38 @@ export default function MonthlyTicket() {
   }, [selectedDate, setMark]);
 
   const resetAll = () => {
-    Alert.alert("重新開始", "確定要清除所有資料嗎？", [
-      { text: "取消", style: "cancel" },
-      {
-        text: "確定",
-        onPress: () => {
-          setSelectedDate("");
-          setMarkHoliday({});
-          setSummary(undefined);
-          setTicketPrice("");
-        },
-      },
-    ]);
+    Alert.alert(
+      "重新開始",
+      "確定要清除所有資料嗎？",
+      [
+        { text: "取消", style: "cancel" },
+        { 
+          text: "確定", 
+          onPress: () => {
+            setSelectedDate('')
+            setMarkHoliday({})
+            setSummary(undefined)
+            setTicketPrice('')
+          }
+        }
+      ]
+    );
   };
 
   const calculateResult = () => {
     if (!ticketPrice || !summary?.holidayCount) return null;
-
+    
     const workingDays = 30 - summary.holidayCount;
     const totalCost = Number(ticketPrice) * 2 * workingDays;
     const monthlyPrice = Number(monthlyTicketPrice);
     const savings = totalCost - monthlyPrice;
-
+    
     return {
       workingDays,
       totalCost,
       monthlyPrice,
       savings,
-      isWorthIt: savings > 0,
+      isWorthIt: savings > 0
     };
   };
 
@@ -122,13 +118,11 @@ export default function MonthlyTicket() {
 
   return (
     <ScrollView style={styles.rootContainer}>
-      <View style={styles.header}>
-        <Text style={styles.title}>月票計算器</Text>
-        <Text style={styles.subtitle}>輕鬆計算月票是否划算</Text>
-      </View>
-
       <View style={styles.card}>
-        <Text style={styles.sectionTitle}>票價設定</Text>
+        <View style={styles.sectionHeader}>
+          <MaterialIcons name="attach-money" size={24} color="#4ECDC4" />
+          <Text style={styles.sectionTitle}>票價設定</Text>
+        </View>
         <View style={styles.inputRow}>
           <View style={styles.inputContainer}>
             <Text style={styles.inputLabel}>單程票價 (元)</Text>
@@ -137,9 +131,7 @@ export default function MonthlyTicket() {
               onChangeText={setTicketPrice}
               value={ticketPrice}
               placeholder="請輸入單程票價"
-              keyboardType={
-                Platform.OS === "ios" ? "numbers-and-punctuation" : "numeric"
-              }
+              keyboardType={Platform.OS === "ios" ? "numbers-and-punctuation" : "numeric"}
             />
           </View>
           <View style={styles.inputContainer}>
@@ -149,22 +141,19 @@ export default function MonthlyTicket() {
               onChangeText={setMonthlyTicketPrice}
               value={monthlyTicketPrice}
               placeholder="1200"
-              keyboardType={
-                Platform.OS === "ios" ? "numbers-and-punctuation" : "numeric"
-              }
+              keyboardType={Platform.OS === "ios" ? "numbers-and-punctuation" : "numeric"}
             />
           </View>
         </View>
       </View>
 
       <View style={styles.card}>
-        <Text style={styles.sectionTitle}>
-          選擇啟用日期
-        </Text>
-        <Text style={styles.instructionText}>
-          點擊日期開始計算30天的使用期間
-        </Text>
-
+        <View style={styles.sectionHeader}>
+          <MaterialIcons name="event" size={24} color="#4ECDC4" />
+          <Text style={styles.sectionTitle}>選擇啟用日期</Text>
+        </View>
+        <Text style={styles.instructionText}>點擊日期開始計算30天的使用期間</Text>
+        
         {summary && summary.startDate && (
           <View style={styles.dateInfoContainer}>
             <Text style={styles.dateRange}>
@@ -176,9 +165,7 @@ export default function MonthlyTicket() {
                 <Text style={styles.statLabel}>假日天數</Text>
               </View>
               <View style={styles.statItem}>
-                <Text style={styles.statNumber}>
-                  {30 - summary.holidayCount}
-                </Text>
+                <Text style={styles.statNumber}>{30 - summary.holidayCount}</Text>
                 <Text style={styles.statLabel}>工作天數</Text>
               </View>
             </View>
@@ -194,40 +181,36 @@ export default function MonthlyTicket() {
             markingType={"period"}
             markedDates={markHoliday}
             theme={{
-              backgroundColor: "#ffffff",
-              calendarBackground: "#ffffff",
-              textSectionTitleColor: "#b6c1cd",
-              selectedDayBackgroundColor: "#4ECDC4",
-              selectedDayTextColor: "#ffffff",
-              todayTextColor: "#4ECDC4",
-              dayTextColor: "#2d4150",
-              textDisabledColor: "#d9e1e8",
-              dotColor: "#4ECDC4",
-              selectedDotColor: "#ffffff",
-              arrowColor: "#4ECDC4",
-              monthTextColor: "#2d4150",
-              indicatorColor: "#4ECDC4",
-              textDayFontWeight: "500",
-              textMonthFontWeight: "bold",
-              textDayHeaderFontWeight: "500",
+              backgroundColor: '#ffffff',
+              calendarBackground: '#ffffff',
+              textSectionTitleColor: '#b6c1cd',
+              selectedDayBackgroundColor: '#4ECDC4',
+              selectedDayTextColor: '#ffffff',
+              todayTextColor: '#4ECDC4',
+              dayTextColor: '#2d4150',
+              textDisabledColor: '#d9e1e8',
+              dotColor: '#4ECDC4',
+              selectedDotColor: '#ffffff',
+              arrowColor: '#4ECDC4',
+              monthTextColor: '#2d4150',
+              indicatorColor: '#4ECDC4',
+              textDayFontWeight: '500',
+              textMonthFontWeight: 'bold',
+              textDayHeaderFontWeight: '500',
               textDayFontSize: 16,
               textMonthFontSize: 16,
-              textDayHeaderFontSize: 13,
+              textDayHeaderFontSize: 13
             }}
           />
         </View>
 
         <View style={styles.legendContainer}>
           <View style={styles.legendItem}>
-            <View
-              style={[styles.legendColor, { backgroundColor: "#4ECDC4" }]}
-            />
+            <View style={[styles.legendColor, { backgroundColor: '#4ECDC4' }]} />
             <Text style={styles.legendText}>工作日</Text>
           </View>
           <View style={styles.legendItem}>
-            <View
-              style={[styles.legendColor, { backgroundColor: "#FF6B6B" }]}
-            />
+            <View style={[styles.legendColor, { backgroundColor: '#FF6B6B' }]} />
             <Text style={styles.legendText}>假日</Text>
           </View>
         </View>
@@ -235,14 +218,16 @@ export default function MonthlyTicket() {
 
       {result && (
         <View style={[styles.card, styles.resultCard]}>
-          <Text style={styles.sectionTitle}>計算結果</Text>
-
+          <View style={styles.sectionHeader}>
+            <MaterialIcons name="bar-chart" size={24} color="#4ECDC4" />
+            <Text style={styles.sectionTitle}>計算結果</Text>
+          </View>
+          
           <View style={styles.costBreakdown}>
             <View style={styles.costItem}>
               <Text style={styles.costLabel}>工作日通勤成本</Text>
               <Text style={styles.costValue}>
-                {result.workingDays} 天 × ${ticketPrice} × 2 = $
-                {result.totalCost}
+                {result.workingDays} 天 × ${ticketPrice} × 2 = ${result.totalCost}
               </Text>
             </View>
             <View style={styles.costItem}>
@@ -251,27 +236,18 @@ export default function MonthlyTicket() {
             </View>
           </View>
 
-          <View
-            style={[
-              styles.resultContainer,
-              result.isWorthIt ? styles.profitResult : styles.lossResult,
-            ]}
-          >
+          <View style={[styles.resultContainer, result.isWorthIt ? styles.profitResult : styles.lossResult]}>
             {result.isWorthIt ? (
               <>
-                <Text style={styles.resultIcon}>🎉</Text>
+                <MaterialIcons name="celebration" size={48} color="#4caf50" />
                 <Text style={styles.resultTitle}>恭喜！月票很划算</Text>
-                <Text style={styles.resultAmount}>
-                  省下 ${result.savings} 元
-                </Text>
+                <Text style={styles.resultAmount}>省下 ${result.savings} 元</Text>
               </>
             ) : (
               <>
-                <Text style={styles.resultIcon}>💸</Text>
+                <MaterialIcons name="money-off" size={48} color="#f44336" />
                 <Text style={styles.resultTitle}>月票不太划算</Text>
-                <Text style={styles.resultAmount}>
-                  多花 ${Math.abs(result.savings)} 元
-                </Text>
+                <Text style={styles.resultAmount}>多花 ${Math.abs(result.savings)} 元</Text>
               </>
             )}
           </View>
@@ -279,14 +255,17 @@ export default function MonthlyTicket() {
       )}
 
       <TouchableOpacity style={styles.resetButton} onPress={resetAll}>
+        <MaterialIcons name="refresh" size={20} color="white" />
         <Text style={styles.resetButtonText}>重新開始</Text>
       </TouchableOpacity>
 
       <View style={styles.footer}>
-        <Text style={styles.footerText}>
-          {/* <MaterialIcons name="info" size={16}/> */}
-          提示：計算基於30天期間，假日不搭車的情況
-        </Text>
+        <View style={styles.footerContent}>
+          <MaterialIcons name="lightbulb" size={16} color="#999" />
+          <Text style={styles.footerText}>
+            提示：計算基於30天期間，假日不搭車的情況
+          </Text>
+        </View>
       </View>
     </ScrollView>
   );
@@ -295,43 +274,34 @@ export default function MonthlyTicket() {
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
-    backgroundColor: "#f5f7fa",
-  },
-  header: {
-    backgroundColor: "#4ECDC4",
-    padding: 20,
-    alignItems: "center",
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "white",
-    marginBottom: 4,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: "white",
-    opacity: 0.9,
+    backgroundColor: '#f5f7fa',
+    paddingHorizontal: 16,
   },
   card: {
-    backgroundColor: "white",
-    margin: 16,
+    backgroundColor: 'white',
+    // margin: 16,
+    marginTop: 16,
     padding: 20,
     borderRadius: 12,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
   },
+  sectionHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+    gap: 8,
+  },
   sectionTitle: {
     fontSize: 18,
-    fontWeight: "bold",
-    color: "#2d4150",
-    marginBottom: 16,
+    fontWeight: 'bold',
+    color: '#2d4150',
   },
   inputRow: {
-    flexDirection: "row",
+    flexDirection: 'row',
     gap: 12,
   },
   inputContainer: {
@@ -339,65 +309,66 @@ const styles = StyleSheet.create({
   },
   inputLabel: {
     fontSize: 14,
-    color: "#666",
+    color: '#666',
     marginBottom: 8,
-    fontWeight: "500",
+    fontWeight: '500',
   },
   input: {
     borderWidth: 1,
-    borderColor: "#ddd",
+    borderColor: '#ddd',
     borderRadius: 8,
     padding: 12,
     fontSize: 16,
-    backgroundColor: "#f9f9f9",
+    backgroundColor: '#f9f9f9',
   },
   instructionText: {
     fontSize: 14,
-    color: "#666",
-    textAlign: "center",
+    color: '#666',
+    marginBottom: 16,
+    textAlign: 'center',
   },
   dateInfoContainer: {
-    backgroundColor: "#f8f9fa",
+    backgroundColor: '#f8f9fa',
     padding: 16,
     borderRadius: 8,
     marginBottom: 16,
   },
   dateRange: {
     fontSize: 16,
-    fontWeight: "600",
-    color: "#2d4150",
-    textAlign: "center",
+    fontWeight: '600',
+    color: '#2d4150',
+    textAlign: 'center',
     marginBottom: 12,
   },
   statsContainer: {
-    flexDirection: "row",
-    justifyContent: "space-around",
+    flexDirection: 'row',
+    justifyContent: 'space-around',
   },
   statItem: {
-    alignItems: "center",
+    alignItems: 'center',
   },
   statNumber: {
     fontSize: 24,
-    fontWeight: "bold",
-    color: "#4ECDC4",
+    fontWeight: 'bold',
+    color: '#4ECDC4',
   },
   statLabel: {
     fontSize: 12,
-    color: "#666",
+    color: '#666',
     marginTop: 4,
   },
   calendarContainer: {
     marginVertical: 16,
   },
   legendContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
+    flexDirection: 'row',
+    justifyContent: 'center',
     gap: 24,
     marginTop: 16,
   },
   legendItem: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     gap: 8,
   },
   legendColor: {
@@ -407,82 +378,85 @@ const styles = StyleSheet.create({
   },
   legendText: {
     fontSize: 12,
-    color: "#666",
+    color: '#666',
   },
   resultCard: {
     borderLeftWidth: 4,
-    borderLeftColor: "#4ECDC4",
+    borderLeftColor: '#4ECDC4',
   },
   costBreakdown: {
     marginBottom: 20,
   },
   costItem: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     paddingVertical: 8,
     borderBottomWidth: 1,
-    borderBottomColor: "#f0f0f0",
+    borderBottomColor: '#f0f0f0',
   },
   costLabel: {
     fontSize: 14,
-    color: "#666",
+    color: '#666',
   },
   costValue: {
     fontSize: 14,
-    fontWeight: "600",
-    color: "#2d4150",
+    fontWeight: '600',
+    color: '#2d4150',
   },
   resultContainer: {
     padding: 20,
     borderRadius: 12,
-    alignItems: "center",
+    alignItems: 'center',
+    gap: 8,
   },
   profitResult: {
-    backgroundColor: "#e8f5e8",
-    borderColor: "#4caf50",
+    backgroundColor: '#e8f5e8',
+    borderColor: '#4caf50',
     borderWidth: 1,
   },
   lossResult: {
-    backgroundColor: "#ffeaea",
-    borderColor: "#f44336",
+    backgroundColor: '#ffeaea',
+    borderColor: '#f44336',
     borderWidth: 1,
-  },
-  resultIcon: {
-    fontSize: 32,
-    marginBottom: 8,
   },
   resultTitle: {
     fontSize: 18,
-    fontWeight: "bold",
-    color: "#2d4150",
-    marginBottom: 4,
+    fontWeight: 'bold',
+    color: '#2d4150',
   },
   resultAmount: {
     fontSize: 20,
-    fontWeight: "bold",
-    color: "#4ECDC4",
+    fontWeight: 'bold',
+    color: '#4ECDC4',
   },
   resetButton: {
-    backgroundColor: "#FF6B6B",
-    margin: 16,
+    backgroundColor: '#FF6B6B',
+    marginTop: 16,
     padding: 16,
     borderRadius: 8,
-    alignItems: "center",
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 8,
   },
   resetButtonText: {
-    color: "white",
+    color: 'white',
     fontSize: 16,
-    fontWeight: "600",
+    fontWeight: '600',
   },
   footer: {
     padding: 20,
-    // alignItems: "center",
+    alignItems: 'center',
+  },
+  footerContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
   },
   footerText: {
     fontSize: 12,
-    color: "#999",
-    textAlign: "center",
-    borderWidth: 1
+    color: '#999',
+    textAlign: 'center',
   },
 });
