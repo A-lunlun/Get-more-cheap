@@ -81,7 +81,7 @@ export default function Index() {
             </Text>
           </View>
 
-          <View style={styles.section}>
+          <View>
             <View style={styles.sectionTitleContainer}>
               <MaterialIcons name="lightbulb" size={20} color="#2E7D32" />
               <Text style={styles.sectionTitle}>開發動機</Text>
@@ -109,9 +109,8 @@ export default function Index() {
             <MaterialIcons name="feedback" size={20} color="#2E7D32" />
             <Text style={styles.contactTitle}>意見回饋</Text>
           </View>
-          <Text style={styles.contactText}>
-            有任何建議或發現 bug，歡迎來信告訴我們：
-          </Text>
+          <Text style={styles.contactText}>有任何建議或發現 bug</Text>
+          <Text style={styles.contactText}>歡迎來信告訴我們</Text>
           <TouchableOpacity
             style={styles.emailButton}
             onPress={handleEmailPress}

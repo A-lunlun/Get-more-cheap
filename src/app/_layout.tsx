@@ -23,8 +23,8 @@ export default function RootLayout() {
           backgroundColor: '#fff',
           borderTopWidth: 1,
           borderTopColor: '#f0f0f0',
-          paddingTop: 5,
-          height: 60,
+          paddingTop: 0,
+          height: 65,
           shadowColor: 'transparent', // 移除陰影
           elevation: 0, // Android 移除陰影
         },

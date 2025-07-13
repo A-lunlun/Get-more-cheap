@@ -10,7 +10,11 @@ interface CompareSectionProps {
   inputEvent: (value: string, index: number, key: "amount" | "price") => void;
 }
 
-export default function CompareSection({ inputs, index, inputEvent }: CompareSectionProps) {
+export default function CompareSection({
+  inputs,
+  index,
+  inputEvent,
+}: CompareSectionProps) {
   return (
     <View style={styles.rootContainer}>
       <Text style={styles.firstText}>{String.fromCharCode(65 + index)}</Text>
@@ -21,7 +25,9 @@ export default function CompareSection({ inputs, index, inputEvent }: CompareSec
             style={styles.input}
             onChangeText={(price) => inputEvent(price, index, "price")}
             value={inputs[index].price}
-            keyboardType={Platform.OS === "ios" ? "numeric" : "numeric"}
+            keyboardType={
+              Platform.OS === "ios" ? "numbers-and-punctuation" : "numeric"
+            }
             placeholder="0"
             placeholderTextColor="#999"
           />
@@ -33,7 +39,9 @@ export default function CompareSection({ inputs, index, inputEvent }: CompareSec
             style={styles.input}
             onChangeText={(amount) => inputEvent(amount, index, "amount")}
             value={inputs[index].amount}
-            keyboardType={Platform.OS === "ios" ? "numeric" : "numeric"}
+            keyboardType={
+              Platform.OS === "ios" ? "numbers-and-punctuation" : "numeric"
+            }
             placeholder="0"
             placeholderTextColor="#999"
           />
@@ -51,7 +59,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     borderColor: "#6C6C6C",
-    backgroundColor: '#FAFAFA',
+    backgroundColor: "#FAFAFA",
   },
   inputSection: {
     flex: 1,
@@ -59,7 +67,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: 'center'
+    alignItems: "center",
   },
   priceContainer: {
     marginBottom: 16,
@@ -67,22 +75,22 @@ const styles = StyleSheet.create({
   firstText: {
     marginRight: 24,
     fontSize: 24,
-    fontWeight: 'bold',
-    color: '#333',
+    fontWeight: "bold",
+    color: "#333",
   },
   title: {
     fontSize: 16,
-    color: '#4F4F4F',
-    fontWeight: '500',
+    color: "#4F4F4F",
+    fontWeight: "500",
   },
   input: {
     borderWidth: 1,
     borderColor: "#6C6C6C",
     borderRadius: 6,
-    // height: 40,
-    width: '60%',
+    height: 40,
+    width: "60%",
     paddingHorizontal: 8,
     fontSize: 14,
-    backgroundColor: '#FFF',
+    backgroundColor: "#FFF",
   },
 });
