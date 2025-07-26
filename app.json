@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "GetMoreCheap",
+    "name": "不實用工具庫",
     "slug": "GetMoreCheap",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/app_icon.png",
     "scheme": "getmorecheap",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -12,6 +12,8 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.allenlun.GetMoreCheap",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -37,6 +39,13 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "59a545bf-ab0e-418e-82ba-d41cc8731e8a"
+      }
+    },
+    "owner": "allen-lun"
   }
 }
